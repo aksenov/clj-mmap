@@ -42,7 +42,7 @@
    Remember to use with-open, or to call .close, to clean up memory and open file descriptors."
   ([^String filename] (get-mmap filename :read-only))
   ([^String filename map-mode]
-   (let [fis  (java.io.RandomAccessFile. filename (map-perms map-mode))
+   (let [fis  (java.io.RandomAccessFile. filename ^String (map-perms map-mode))
          fc   (.getChannel fis)
          size (.size fc)
          mmap (fn [pos n] (.map fc (map-modes map-mode) pos n))]
